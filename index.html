@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--projecttitle--><title>3dapp</title><!--projecttitle-end-->
+		<!--projectdescription--><meta name="description" content="Baruuuuurururuurru"><!--projectdescription-end-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<!-- Insert this line above script imports  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		
+		<script src="imagedata.js"></script>
+		<script src="jquery.js"></script>
+		<script src="three.min.js"></script>
+		<script src="panolens.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		
+		<!-- Insert this line after script imports -->
+		<script>if (window.module) module = window.module;</script>
+		
+		<style>
+		
+			.loader {
+				border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+						
+			/* SCROLLBAR STYLING */
+			/* width */
+			::-webkit-scrollbar {
+				width: 0.25em;
+				height: 0.25em;
+			}
+			/* Track */
+			::-webkit-scrollbar-track {
+				background: #2c3643; 
+			}
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				background: #0d9e59; 
+				transition: background .5s;
+			}
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+				background: #00e075; 
+			}
+
+
+			html, body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #000;
+				color: black;
+			}
+
+			a:link, a:visited{
+				color: #bdc3c7;	
+			}
+
+			.fullwrapper{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: black;
+			}
+			
+			#container {
+                width: 100%;
+                height: 100%;
+            }
+			
+			#tmp{
+				position: fixed;
+				top: 0;
+				left: 0; 
+				right: 0;
+				bottom: 0;
+				padding: 3em;
+				background-color: rgba(0,0,0,.5);
+				backdrop-filter: blur(5px);
+				display: none;
+			}
+
+
+
+
+			
+		</style>
+
+		
+	</head>
+	<body id="body">
+	    <div id="container" style="color: black;"></div>
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="modalclick" hidden>
+			Launch demo modal
+		</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea, perspiciatis ab reprehenderit ducimus, deleniti neque veritatis ullam doloremque in voluptatum earum obcaecati! Doloremque, consectetur dolores? Earum, ipsum. Assumenda, excepturi amet.
+			</div>
+			
+		</div>
+	</div>
+</div>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DMEmodal" id="DMEmodalclick" hidden>
+			Launch demo modal
+		</button>
+<div class="modal fade" id="DMEmodal" tabindex="-1" role="dialog" aria-labelledby="DMEmodalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">
+				DME	
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					DME (Distance Measuring Equipment) adalah peralatan untuk mengukur jarak yang collocated dengan peralatan DVOR	
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Monitormodal" id="Monitormodalclick" hidden>
+			Launch demo modal
+		</button>
+<div class="modal fade" id="Monitormodal" tabindex="-1" role="dialog" aria-labelledby="MonitormodalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">
+				Monitoring System	
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					LOCAL CONTROL MONITORING SYSTEM DVOR MAK YANG BERFUNGSI UNTUK MENGUBAH PARAMETER TRANSMITTER MAUPUN MONITOR DVOR SECARA LOCAL
+
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" id="Antenamodalclick" hidden>
+			Launch demo modal
+		</button>
+		<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="staticBackdropLabel">
+					ANTENNA DVOR	
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div>
+					ANTENNA DVOR TERDIRI DARI 48 ANTENNA SIDE BAND DAN 1 ANTENNA CARRIER
+
+
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#monitorLocalmodal" id="monitorLocalmodalclick"
+			hidden>
+			Launch demo modal
+		</button>
+		<div class="modal fade" id="monitorLocalmodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="staticBackdropLabel">
+							LOCAL CONTROL MONITORING
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							LOCAL CONTROL MONITORING SYSTEM YANG BERFUNGSI UNTUK MENGUBAH PARAMETER TRANSMITTER DAN MONITOR SECARA LOCAL
+
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#glideAntennamodal" id="glideAntennamodalclick"
+			hidden>
+			Launch demo modal
+		</button>
+		<div class="modal fade" id="glideAntennamodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="staticBackdropLabel">
+							ANTENNA GLIDE PATH
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							ANTENNA GLIDE PATH YANG BERJENIS CAPTURE EFFECT
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#localizerAntennamodal" id="localizerAntennamodalclick"
+			hidden>
+			Launch demo modal
+		</button>
+		<div class="modal fade" id="localizerAntennamodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="staticBackdropLabel">
+							ANTENNA LOCALIZER
+						</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							ANTENNA LOCALIZER TERDIRI DARI 7 - 12 PASANG ANTENNA
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#DVORModal" id="DVORmodalclick" hidden>
+			Launch demo modal
+		</button>
+<div class="modal fade" id="DVORModal" tabindex="-1" role="dialog" aria-labelledby="DVORModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="DVORModalLabel">
+					DVOR
+				</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body flex justify-between">
+				<div class="w-full">
+					<img src="images/MODUL_DVOR.jpg" alt="">
+				</div>
+				<div class="w-full">
+					<p>
+
+						DVOR (Doppler Very High Frequency Omnidirectional Range) adalah fasilitas navigasi penerbangan yang bekerja
+						dengan menggunakan frekuensi radio pada range 108-118 MHz yang dipasang pada suaru lokasi tertentu di
+						dalan/di
+						luar lingkungan bandara yang berfungsi untuk memberikan informasi azimuth, bearing pesawat terhadap VOR.
+					</p>
+					<div class="px-5">
+						<ol>
+							<li>
+								Homing : Stasiun DVOR yang dipasang di dalam lingkungan bandara dan dioperasikan untuk memandu
+								penerbangan dalam mengemudikan pesawat udara menuju lokasi bandara.
+							</li>
+							<li>
+								<p>
+									En-Route : DVOR dipasang tidak di dalam bandara, melainkan pada suatu tempat/check point
+									tertentu
+									sepanjang jalur penerbangan
+								</p>
+
+							</li>
+							<li>
+								<p>
+									Holding : Pesawat melakukan holding di dalam atau di luar bandata, di mana pesawat akan
+									melakukan
+									holding di ruang udara karena proses antri dan ketika pesawat ingub melakukan pendaratan harus
+									meminta izin atau harus menunggu arahan dari ATC/Controller
+								</p>
+							</li>
+							<li>
+								<p>
+									Locator : VOR dipasang pada perpanjangab garis tengah landasab pacu guna memberikan panduan arah
+									pendaratan pada saat pendekatan
+
+								</p>
+							</li>
+						</ol>
+					</div>
+				</div>
+					
+
+
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#firstShow" id="ModalfirstShow" hidden>
+			Launch demo modal
+		</button>
+<div class="modal fade" id="firstShow" tabindex="-1" role="dialog" aria-labelledby="firstShowLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<center>
+					<h5>
+					Welcome To 3D Tour App
+					</h5>
+					
+				</center>
+			</div>
+			
+		</div>
+	</div>
+</div>
+    	
+		
+		
+		<!--customhtml--><div class='customhotspot' id='IMG_3413'><div onclick='chclickinfospotIMG_34130();' id='infospotIMG_34130' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotIMG_34131();' id='infospotIMG_34131' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotIMG_34133();' id='infospotIMG_34133' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='silverfinearttwentycherrytreesavenuefieldaustria'></div><div class='customhotspot' id='IMG_3410'><div onclick='chclickinfospotIMG_34100();' id='infospotIMG_34100' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotIMG_34101();' id='infospotIMG_34101' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='ANTENNA_DVOR'><div onclick='chclickinfospotANTENNA_DVOR0();' id='infospotANTENNA_DVOR0' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotANTENNA_DVOR2();' id='infospotANTENNA_DVOR2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/antenna(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotANTENNA_DVOR3();' id='infospotANTENNA_DVOR3' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/forward.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='ANTENNA_LOCALIZER'><div onclick='chclickinfospotANTENNA_LOCALIZER0();' id='infospotANTENNA_LOCALIZER0' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotANTENNA_LOCALIZER2();' id='infospotANTENNA_LOCALIZER2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/back.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='Picture1bKkZA'><div onclick='chclickinfospotPicture1bKkZA0();' id='infospotPicture1bKkZA0' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotPicture1bKkZA1();' id='infospotPicture1bKkZA1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotPicture1bKkZA2();' id='infospotPicture1bKkZA2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotPicture1bKkZA3();' id='infospotPicture1bKkZA3' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/antenna(1).png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='glide'><div onclick='chclickinfospotglide1();' id='infospotglide1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotglide2();' id='infospotglide2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/back.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='shelterglide'><div onclick='chclickinfospotshelterglide0();' id='infospotshelterglide0' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotshelterglide1();' id='infospotshelterglide1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotshelterglide2();' id='infospotshelterglide2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotshelterglide3();' id='infospotshelterglide3' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/forward.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='ANTENNA_MIDDLE_MARKER'><div onclick='chclickinfospotANTENNA_MIDDLE_MARKER1();' id='infospotANTENNA_MIDDLE_MARKER1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div><div onclick='chclickinfospotANTENNA_MIDDLE_MARKER2();' id='infospotANTENNA_MIDDLE_MARKER2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/back.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='SHEELTER_MIDDLE_MARKER'><div onclick='chclickinfospotSHEELTER_MIDDLE_MARKER0();' id='infospotSHEELTER_MIDDLE_MARKER0' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/information(1).png' style='width: 64px; height: 64px;'></div></div><!--customhtml-end-->
+		
+		<div id="tmp">
+			<div style="width: 100%; height: 100%; overflow: hidden; overflow-y: auto; box-sizing: border-box; position: relative;" id="tmpcontent"></div>
+			<div class="mediaclosebutton" onclick="hideTemp()"><i class="fa fa-times-circle"></i></div>
+		</div>
+
+
+		<div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%;">
+    		<div class="flex justify-center items-center h-screen">
+    			<div class="loader"></div>
+    		</div>
+    	</div>
+
+		
+
+		<script>
+		
+		var modalshow = document.getElementById('modalclick')
+		var ModalfirstShow = document.getElementById('ModalfirstShow')
+		var DVORmodalclick = document.getElementById('DVORmodalclick')
+		var DMEmodalclick = document.getElementById('DMEmodalclick')
+		var Monitormodalclick = document.getElementById('Monitormodalclick')
+		var Antenamodalclick = document.getElementById('Antenamodalclick')
+		var monitorLocalmodalclick = document.getElementById('monitorLocalmodalclick')
+		var glideAntennamodalclick = document.getElementById('glideAntennamodalclick')
+		var localizerAntennamodalclick = document.getElementById('localizerAntennamodalclick')
+		
+		const firstShow = () => {
+			ModalfirstShow.click()
+		}
+		const dvorModal = () => {
+			DVORmodalclick.click()
+		}
+		const dmeModal = () => {
+			DMEmodalclick.click()
+		}
+		const monitorModal = () => {
+			Monitormodalclick.click()
+		}
+		const antenaModal = () => {
+			Antenamodalclick.click()
+		}
+		const monitorLocalModal = () => {
+			monitorLocalmodalclick.click()
+		}
+		const glideAntennamodal = () => {
+			glideAntennamodalclick.click()
+		}
+		const localizerAntennamodal = () => {
+			localizerAntennamodalclick.click()
+		}
+
+
+
+
+		setTimeout(() => {
+			firstShow()
+		}, 1000);
+		</script>
+		
+    	<script>
+			
+            var container = document.querySelector( '#container' );
+			/*panolens*/
+
+var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  output: 'console' , autoHideInfospot: false, } );
+
+/*panolens-end*/
+			
+			viewer.addUpdateCallback(function(){});
+			
+			/*panoramas*/
+var IMG_3413 = new PANOLENS.ImagePanorama( "panoramas/IMG_3413.jpg" );
+			IMG_3413.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			IMG_3413.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			IMG_3413.addEventListener('click', function(e){
+			});
+
+var infospotIMG_34130 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotIMG_34130.position.set( -2449.92, 1954.27, 3887.03 );
+					infospotIMG_34130.visible = false;
+					IMG_3413.add(infospotIMG_34130);
+infospotIMG_34130.addEventListener('click', function(){
+dvorModal()
+});
+var infospotIMG_34131 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotIMG_34131.position.set( 3477.32, 3469.04, 901.18 );
+					infospotIMG_34131.visible = false;
+					IMG_3413.add(infospotIMG_34131);
+infospotIMG_34131.addEventListener('click', function(){
+dmeModal()
+});
+var infospotIMG_34132 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotIMG_34132.position.set( 4153.28, -360.85, -2746.32 );
+					IMG_3413.add(infospotIMG_34132);
+infospotIMG_34132.addEventListener('click', function(){
+ChangePanorama('ANTENNA_DVOR');
+});
+var infospotIMG_34133 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotIMG_34133.position.set( -1089.76, -1000.86, -4768.67 );
+					infospotIMG_34133.visible = false;
+					IMG_3413.add(infospotIMG_34133);
+infospotIMG_34133.addEventListener('click', function(){
+monitorModal()
+});
+viewer.add( IMG_3413 );
+var silverfinearttwentycherrytreesavenuefieldaustria = new PANOLENS.ImagePanorama( "panoramas/silverfinearttwentycherrytreesavenuefieldaustria.jpg" );
+			silverfinearttwentycherrytreesavenuefieldaustria.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			silverfinearttwentycherrytreesavenuefieldaustria.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			silverfinearttwentycherrytreesavenuefieldaustria.addEventListener('click', function(e){
+			});
+
+var infospotsilverfinearttwentycherrytreesavenuefieldaustria0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotsilverfinearttwentycherrytreesavenuefieldaustria0.position.set( 173.42, -71.91, -4988.09 );
+					silverfinearttwentycherrytreesavenuefieldaustria.add(infospotsilverfinearttwentycherrytreesavenuefieldaustria0);
+infospotsilverfinearttwentycherrytreesavenuefieldaustria0.addEventListener('click', function(){
+ChangePanorama('ANTENNA_DVOR');
+});
+var infospotsilverfinearttwentycherrytreesavenuefieldaustria1 = new PANOLENS.Infospot( 512, hotspotIcons[4].data, true );
+					infospotsilverfinearttwentycherrytreesavenuefieldaustria1.position.set( 3713.91, -113.03, -3340.85 );
+					silverfinearttwentycherrytreesavenuefieldaustria.add(infospotsilverfinearttwentycherrytreesavenuefieldaustria1);
+infospotsilverfinearttwentycherrytreesavenuefieldaustria1.addEventListener('click', function(){
+ChangePanorama('glide');
+});
+var infospotsilverfinearttwentycherrytreesavenuefieldaustria2 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
+					infospotsilverfinearttwentycherrytreesavenuefieldaustria2.position.set( -2769.46, 23.39, -4154.04 );
+					silverfinearttwentycherrytreesavenuefieldaustria.add(infospotsilverfinearttwentycherrytreesavenuefieldaustria2);
+infospotsilverfinearttwentycherrytreesavenuefieldaustria2.addEventListener('click', function(){
+ChangePanorama('ANTENNA_MIDDLE_MARKER');
+});
+viewer.add( silverfinearttwentycherrytreesavenuefieldaustria );
+var IMG_3410 = new PANOLENS.ImagePanorama( "panoramas/IMG_3410.jpg" );
+			IMG_3410.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			IMG_3410.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			IMG_3410.addEventListener('click', function(e){
+			});
+
+var infospotIMG_34100 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotIMG_34100.position.set( 232.68, 3350.30, 3694.56 );
+					infospotIMG_34100.visible = false;
+					IMG_3410.add(infospotIMG_34100);
+infospotIMG_34100.addEventListener('click', function(){
+dvorModal()
+});
+var infospotIMG_34101 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotIMG_34101.position.set( 2086.25, 1985.29, -4077.23 );
+					infospotIMG_34101.visible = false;
+					IMG_3410.add(infospotIMG_34101);
+infospotIMG_34101.addEventListener('click', function(){
+dmeModal()
+});
+var infospotIMG_34102 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotIMG_34102.position.set( -4527.50, -1172.45, 1749.41 );
+					IMG_3410.add(infospotIMG_34102);
+infospotIMG_34102.addEventListener('click', function(){
+ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria');
+});
+viewer.add( IMG_3410 );
+var ANTENNA_DVOR = new PANOLENS.ImagePanorama( "panoramas/ANTENNA_DVOR.jpg" );
+			ANTENNA_DVOR.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			ANTENNA_DVOR.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			ANTENNA_DVOR.addEventListener('click', function(e){
+			});
+
+var infospotANTENNA_DVOR0 = new PANOLENS.Infospot( 512, hotspotIcons[5].data, true );
+					infospotANTENNA_DVOR0.position.set( 2483.14, 1791.73, 3941.34 );
+					infospotANTENNA_DVOR0.visible = false;
+					ANTENNA_DVOR.add(infospotANTENNA_DVOR0);
+infospotANTENNA_DVOR0.addEventListener('click', function(){
+antenaModal()
+});
+var infospotANTENNA_DVOR1 = new PANOLENS.Infospot( 512, hotspotIcons[5].data, true );
+					infospotANTENNA_DVOR1.position.set( 4538.95, -665.77, 1975.51 );
+					ANTENNA_DVOR.add(infospotANTENNA_DVOR1);
+infospotANTENNA_DVOR1.addEventListener('click', function(){
+ChangePanorama('IMG_3413');
+});
+var infospotANTENNA_DVOR2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotANTENNA_DVOR2.position.set( -4573.65, -1098.83, 1671.20 );
+					infospotANTENNA_DVOR2.visible = false;
+					ANTENNA_DVOR.add(infospotANTENNA_DVOR2);
+infospotANTENNA_DVOR2.addEventListener('click', function(){
+ChangePanorama('ANTENNA_LOCALIZER');
+});
+var infospotANTENNA_DVOR3 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotANTENNA_DVOR3.position.set( -1522.75, -533.13, -4728.10 );
+					infospotANTENNA_DVOR3.visible = false;
+					ANTENNA_DVOR.add(infospotANTENNA_DVOR3);
+infospotANTENNA_DVOR3.addEventListener('click', function(){
+ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria');
+});
+viewer.add( ANTENNA_DVOR );
+var ANTENNA_LOCALIZER = new PANOLENS.ImagePanorama( "panoramas/ANTENNA_LOCALIZER.jpg" );
+			ANTENNA_LOCALIZER.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			ANTENNA_LOCALIZER.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			ANTENNA_LOCALIZER.addEventListener('click', function(e){
+			});
+
+var infospotANTENNA_LOCALIZER0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotANTENNA_LOCALIZER0.position.set( 2474.17, -1234.20, 4159.91 );
+					infospotANTENNA_LOCALIZER0.visible = false;
+					ANTENNA_LOCALIZER.add(infospotANTENNA_LOCALIZER0);
+infospotANTENNA_LOCALIZER0.addEventListener('click', function(){
+localizerAntennamodal()
+});
+var infospotANTENNA_LOCALIZER1 = new PANOLENS.Infospot( 512, hotspotIcons[5].data, true );
+					infospotANTENNA_LOCALIZER1.position.set( -404.37, -1357.43, 4787.02 );
+					ANTENNA_LOCALIZER.add(infospotANTENNA_LOCALIZER1);
+infospotANTENNA_LOCALIZER1.addEventListener('click', function(){
+ChangePanorama('Picture1bKkZA');
+});
+var infospotANTENNA_LOCALIZER2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotANTENNA_LOCALIZER2.position.set( -4584.50, -1983.49, 49.45 );
+					infospotANTENNA_LOCALIZER2.visible = false;
+					ANTENNA_LOCALIZER.add(infospotANTENNA_LOCALIZER2);
+infospotANTENNA_LOCALIZER2.addEventListener('click', function(){
+ChangePanorama('ANTENNA_DVOR');
+});
+viewer.add( ANTENNA_LOCALIZER );
+var Picture1bKkZA = new PANOLENS.ImagePanorama( "panoramas/Picture1bKkZA.jpg" );
+			Picture1bKkZA.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Picture1bKkZA.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Picture1bKkZA.addEventListener('click', function(e){
+			});
+
+var infospotPicture1bKkZA0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotPicture1bKkZA0.position.set( -1313.31, 2065.91, 4351.22 );
+					infospotPicture1bKkZA0.visible = false;
+					Picture1bKkZA.add(infospotPicture1bKkZA0);
+infospotPicture1bKkZA0.addEventListener('click', function(){
+showMedia(1, 'images/LOCALIZER.jpg');
+});
+var infospotPicture1bKkZA1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotPicture1bKkZA1.position.set( 2244.69, -2019.66, 3978.74 );
+					infospotPicture1bKkZA1.visible = false;
+					Picture1bKkZA.add(infospotPicture1bKkZA1);
+infospotPicture1bKkZA1.addEventListener('click', function(){
+monitorLocalModal()
+});
+var infospotPicture1bKkZA2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotPicture1bKkZA2.position.set( 3984.47, -942.20, -2861.04 );
+					infospotPicture1bKkZA2.visible = false;
+					Picture1bKkZA.add(infospotPicture1bKkZA2);
+infospotPicture1bKkZA2.addEventListener('click', function(){
+dmeModal()
+});
+var infospotPicture1bKkZA3 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotPicture1bKkZA3.position.set( -621.11, -1367.94, -4760.10 );
+					infospotPicture1bKkZA3.visible = false;
+					Picture1bKkZA.add(infospotPicture1bKkZA3);
+infospotPicture1bKkZA3.addEventListener('click', function(){
+ChangePanorama('ANTENNA_LOCALIZER');
+});
+viewer.add( Picture1bKkZA );
+var glide = new PANOLENS.ImagePanorama( "panoramas/glide.jpg" );
+			glide.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			glide.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			glide.addEventListener('click', function(e){
+			});
+
+var infospotglide0 = new PANOLENS.Infospot( 512, hotspotIcons[5].data, true );
+					infospotglide0.position.set( 3356.61, -2722.42, 2503.39 );
+					glide.add(infospotglide0);
+infospotglide0.addEventListener('click', function(){
+ChangePanorama('shelterglide');
+});
+var infospotglide1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotglide1.position.set( 3474.25, 2775.58, 2267.16 );
+					infospotglide1.visible = false;
+					glide.add(infospotglide1);
+infospotglide1.addEventListener('click', function(){
+glideAntennamodal()
+});
+var infospotglide2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotglide2.position.set( -4022.54, -2952.42, -227.14 );
+					infospotglide2.visible = false;
+					glide.add(infospotglide2);
+infospotglide2.addEventListener('click', function(){
+ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria');
+});
+viewer.add( glide );
+var shelterglide = new PANOLENS.ImagePanorama( "panoramas/shelterglide.jpg" );
+			shelterglide.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			shelterglide.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			shelterglide.addEventListener('click', function(e){
+			});
+
+var infospotshelterglide0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotshelterglide0.position.set( 994.38, 3407.43, 3511.23 );
+					infospotshelterglide0.visible = false;
+					shelterglide.add(infospotshelterglide0);
+infospotshelterglide0.addEventListener('click', function(){
+showMedia(1, 'images/GLIDE_PATHH.jpg');
+});
+var infospotshelterglide1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotshelterglide1.position.set( 2579.73, -1929.99, 3816.06 );
+					infospotshelterglide1.visible = false;
+					shelterglide.add(infospotshelterglide1);
+infospotshelterglide1.addEventListener('click', function(){
+monitorLocalModal()
+});
+var infospotshelterglide2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotshelterglide2.position.set( 4925.32, 58.97, -806.41 );
+					infospotshelterglide2.visible = false;
+					shelterglide.add(infospotshelterglide2);
+infospotshelterglide2.addEventListener('click', function(){
+dmeModal()
+});
+var infospotshelterglide3 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotshelterglide3.position.set( -1283.80, 747.45, -4765.90 );
+					infospotshelterglide3.visible = false;
+					shelterglide.add(infospotshelterglide3);
+infospotshelterglide3.addEventListener('click', function(){
+ChangePanorama('glide');
+});
+viewer.add( shelterglide );
+var ANTENNA_MIDDLE_MARKER = new PANOLENS.ImagePanorama( "panoramas/ANTENNA_MIDDLE_MARKER.jpg" );
+			ANTENNA_MIDDLE_MARKER.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			ANTENNA_MIDDLE_MARKER.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			ANTENNA_MIDDLE_MARKER.addEventListener('click', function(e){
+			});
+
+var infospotANTENNA_MIDDLE_MARKER0 = new PANOLENS.Infospot( 512, hotspotIcons[5].data, true );
+					infospotANTENNA_MIDDLE_MARKER0.position.set( 2459.61, -2295.95, 3690.11 );
+					ANTENNA_MIDDLE_MARKER.add(infospotANTENNA_MIDDLE_MARKER0);
+infospotANTENNA_MIDDLE_MARKER0.addEventListener('click', function(){
+ChangePanorama('SHEELTER_MIDDLE_MARKER');
+});
+var infospotANTENNA_MIDDLE_MARKER1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotANTENNA_MIDDLE_MARKER1.position.set( 3574.48, 3466.71, -407.51 );
+					infospotANTENNA_MIDDLE_MARKER1.visible = false;
+					ANTENNA_MIDDLE_MARKER.add(infospotANTENNA_MIDDLE_MARKER1);
+infospotANTENNA_MIDDLE_MARKER1.addEventListener('click', function(){
+});
+var infospotANTENNA_MIDDLE_MARKER2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotANTENNA_MIDDLE_MARKER2.position.set( -3784.24, -2880.79, -1522.01 );
+					infospotANTENNA_MIDDLE_MARKER2.visible = false;
+					ANTENNA_MIDDLE_MARKER.add(infospotANTENNA_MIDDLE_MARKER2);
+infospotANTENNA_MIDDLE_MARKER2.addEventListener('click', function(){
+ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria');
+});
+viewer.add( ANTENNA_MIDDLE_MARKER );
+var SHEELTER_MIDDLE_MARKER = new PANOLENS.ImagePanorama( "panoramas/SHEELTER_MIDDLE_MARKER.jpg" );
+			SHEELTER_MIDDLE_MARKER.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			SHEELTER_MIDDLE_MARKER.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			SHEELTER_MIDDLE_MARKER.addEventListener('click', function(e){
+			});
+
+var infospotSHEELTER_MIDDLE_MARKER0 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotSHEELTER_MIDDLE_MARKER0.position.set( 4464.16, 1945.79, 1105.45 );
+					infospotSHEELTER_MIDDLE_MARKER0.visible = false;
+					SHEELTER_MIDDLE_MARKER.add(infospotSHEELTER_MIDDLE_MARKER0);
+infospotSHEELTER_MIDDLE_MARKER0.addEventListener('click', function(){
+showMedia(1, 'images/MIDDLE_MARKER_.jpg');
+});
+var infospotSHEELTER_MIDDLE_MARKER1 = new PANOLENS.Infospot( 512, hotspotIcons[9].data, true );
+					infospotSHEELTER_MIDDLE_MARKER1.position.set( 973.74, -4178.63, 2556.13 );
+					SHEELTER_MIDDLE_MARKER.add(infospotSHEELTER_MIDDLE_MARKER1);
+infospotSHEELTER_MIDDLE_MARKER1.addEventListener('click', function(){
+ChangePanorama('ANTENNA_MIDDLE_MARKER');
+});
+viewer.add( SHEELTER_MIDDLE_MARKER );
+$(document).ready(function(){ ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria'); });
+
+/*panoramas-end*/
+            
+			
+			function hideTemp(){
+				$("#tmp").fadeOut();
+				setTimeout(function(){
+					$("#tmpcontent").html("");
+				},1000);
+			}
+			
+			function showMedia(type, content){
+				switch(type){
+					case 1 :
+						//Image
+						$("#tmpcontent").html("<img src='"+content+"' style='width: 100%;'>");
+						$("#tmp").fadeIn();
+						break;
+					case 2 :
+						//Video
+						$("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" +content+ "' type='video/mp4'> Your browser does not support the video tag. </video>");
+						$("#tmp").fadeIn();
+						break;
+					case 3 :
+						//Audio
+						$("#tmpcontent").html("<audio controls style='width: 100%;'><source src='"+content+"' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
+						$("#tmp").fadeIn();
+						break;
+					case 4 :
+						//PDF
+						$("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../"+content+"' style='width: 100%; height: 99%;'></iframe>");
+						$("#tmp").fadeIn();
+						break;
+				}
+			}
+			
+			
+			
+			//Update Callback
+			viewer.addUpdateCallback(function(){
+				
+				/*viewerupdatecallback*/
+if(viewer.panorama == IMG_3413){
+ShowMyInfospot(infospotIMG_34130, 'infospotIMG_34130');
+ShowMyInfospot(infospotIMG_34131, 'infospotIMG_34131');
+ShowMyInfospot(infospotIMG_34133, 'infospotIMG_34133');
+}
+
+if(viewer.panorama == silverfinearttwentycherrytreesavenuefieldaustria){
+}
+
+if(viewer.panorama == IMG_3410){
+ShowMyInfospot(infospotIMG_34100, 'infospotIMG_34100');
+ShowMyInfospot(infospotIMG_34101, 'infospotIMG_34101');
+}
+
+if(viewer.panorama == ANTENNA_DVOR){
+ShowMyInfospot(infospotANTENNA_DVOR0, 'infospotANTENNA_DVOR0');
+ShowMyInfospot(infospotANTENNA_DVOR2, 'infospotANTENNA_DVOR2');
+ShowMyInfospot(infospotANTENNA_DVOR3, 'infospotANTENNA_DVOR3');
+}
+
+if(viewer.panorama == ANTENNA_LOCALIZER){
+ShowMyInfospot(infospotANTENNA_LOCALIZER0, 'infospotANTENNA_LOCALIZER0');
+ShowMyInfospot(infospotANTENNA_LOCALIZER2, 'infospotANTENNA_LOCALIZER2');
+}
+
+if(viewer.panorama == Picture1bKkZA){
+ShowMyInfospot(infospotPicture1bKkZA0, 'infospotPicture1bKkZA0');
+ShowMyInfospot(infospotPicture1bKkZA1, 'infospotPicture1bKkZA1');
+ShowMyInfospot(infospotPicture1bKkZA2, 'infospotPicture1bKkZA2');
+ShowMyInfospot(infospotPicture1bKkZA3, 'infospotPicture1bKkZA3');
+}
+
+if(viewer.panorama == glide){
+ShowMyInfospot(infospotglide1, 'infospotglide1');
+ShowMyInfospot(infospotglide2, 'infospotglide2');
+}
+
+if(viewer.panorama == shelterglide){
+ShowMyInfospot(infospotshelterglide0, 'infospotshelterglide0');
+ShowMyInfospot(infospotshelterglide1, 'infospotshelterglide1');
+ShowMyInfospot(infospotshelterglide2, 'infospotshelterglide2');
+ShowMyInfospot(infospotshelterglide3, 'infospotshelterglide3');
+}
+
+if(viewer.panorama == ANTENNA_MIDDLE_MARKER){
+ShowMyInfospot(infospotANTENNA_MIDDLE_MARKER1, 'infospotANTENNA_MIDDLE_MARKER1');
+ShowMyInfospot(infospotANTENNA_MIDDLE_MARKER2, 'infospotANTENNA_MIDDLE_MARKER2');
+}
+
+if(viewer.panorama == SHEELTER_MIDDLE_MARKER){
+ShowMyInfospot(infospotSHEELTER_MIDDLE_MARKER0, 'infospotSHEELTER_MIDDLE_MARKER0');
+}
+/*viewerupdatecallback-end*/
+				
+				
+			});
+			
+			
+			
+			var hotspotsvisible = true;
+			function ShowMyInfospot(hs, elid){
+				var thehs = toScreenPosition(hs);
+				if(thehs.z < 1){
+					$("#" + elid).css({
+						"top" : (thehs.y - ($("#" + elid).height()/2)) + "px",
+						"left" : (thehs.x - ($("#" + elid).width()/2)) + "px",
+					});
+					if(hotspotsvisible)
+						$("#" + elid).show();
+				}else{
+					$("#" + elid).hide();
+				}
+				
+			}
+			
+			function toScreenPosition(obj)
+			{
+				var vector = new THREE.Vector3();
+				var widthHalf = 0.5 * innerWidth;
+				var heightHalf = 0.5 * innerHeight;
+				
+				//obj.updateMatrixWorld();				
+				vector.setFromMatrixPosition(obj.matrixWorld);
+				
+				
+				vector.project(viewer.camera);
+
+				vector.x = ( vector.x * widthHalf ) + widthHalf;
+				vector.y = - ( vector.y * heightHalf ) + heightHalf;
+
+				
+				return { 
+					x: vector.x,
+					y: vector.y,
+					z: vector.z,
+				};
+
+			};
+			
+			var currentPanorama;
+			function ChangePanorama(panorama){
+				currentPanorama = panorama;
+				HideInfospots(); 
+				$("#loading").fadeIn();
+				//$(".customhotspot").fadeOut();
+				setTimeout(function(){
+					viewer.setPanorama(window[panorama]);
+				}, 100);
+				setTimeout(function(){
+					$("#" + panorama).fadeIn();
+					$("#loading").fadeOut();
+				}, 1000);
+				
+			}
+			
+			
+			
+			function HideInfospots(){
+				$(".customhotspot").fadeOut();
+			}
+
+			/*customjs*/
+function chclickinfospotIMG_34130(){ 
+dvorModal()
+}
+
+function chclickinfospotIMG_34131(){ 
+dmeModal()
+}
+
+function chclickinfospotIMG_34133(){ 
+monitorModal()
+}
+
+function chclickinfospotIMG_34100(){ 
+dvorModal()
+}
+
+function chclickinfospotIMG_34101(){ 
+dmeModal()
+}
+
+function chclickinfospotANTENNA_DVOR0(){ 
+antenaModal()
+}
+
+function chclickinfospotANTENNA_DVOR2(){ 
+ChangePanorama('ANTENNA_LOCALIZER');
+}
+
+function chclickinfospotANTENNA_DVOR3(){ 
+ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria');
+}
+
+function chclickinfospotANTENNA_LOCALIZER0(){ 
+localizerAntennamodal()
+}
+
+function chclickinfospotANTENNA_LOCALIZER2(){ 
+ChangePanorama('ANTENNA_DVOR');
+}
+
+function chclickinfospotPicture1bKkZA0(){ 
+showMedia(1, 'images/LOCALIZER.jpg');
+}
+
+function chclickinfospotPicture1bKkZA1(){ 
+monitorLocalModal()
+}
+
+function chclickinfospotPicture1bKkZA2(){ 
+dmeModal()
+}
+
+function chclickinfospotPicture1bKkZA3(){ 
+ChangePanorama('ANTENNA_LOCALIZER');
+}
+
+function chclickinfospotglide1(){ 
+glideAntennamodal()
+}
+
+function chclickinfospotglide2(){ 
+ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria');
+}
+
+function chclickinfospotshelterglide0(){ 
+showMedia(1, 'images/GLIDE_PATHH.jpg');
+}
+
+function chclickinfospotshelterglide1(){ 
+monitorLocalModal()
+}
+
+function chclickinfospotshelterglide2(){ 
+dmeModal()
+}
+
+function chclickinfospotshelterglide3(){ 
+ChangePanorama('glide');
+}
+
+function chclickinfospotANTENNA_MIDDLE_MARKER1(){ 
+}
+
+function chclickinfospotANTENNA_MIDDLE_MARKER2(){ 
+ChangePanorama('silverfinearttwentycherrytreesavenuefieldaustria');
+}
+
+function chclickinfospotSHEELTER_MIDDLE_MARKER0(){ 
+showMedia(1, 'images/MIDDLE_MARKER_.jpg');
+}
+/*customjs-end*/
+
+
+			
+        </script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+		</script>
+	</body>
+</html>
