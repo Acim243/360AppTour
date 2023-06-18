@@ -1,0 +1,81 @@
+<div class="blog-details__content">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="https://www.sdf-aviation.com/img/nav-foto-llz2.jpg" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="https://www.sdf-aviation.com/img/nav-foto-llz1.jpg" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="https://www.sdf-aviation.com/img/nav-foto-llz3.jpg" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="https://www.sdf-aviation.com/img/nav-foto-llz4.jpg" alt="Third slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="https://www.sdf-aviation.com/img/nav-foto-llz5.jpg" alt="Third slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    <h3>Localizer</h3>
+    <p style="text-align: justify;">
+        Localizer (LLZ) merupakan Subsistem peralatan Instrument Landing System (ILS) yang memberikan panduan garis tengah dari landas pacu bagi pesawat udara yang akan melakukan prosedur pendaratan.
+    </p>
+    <p>
+        Peralatan ini berfungsi untuk membimbing pesawat agar berada pada centerline of runway dalam proses pendaratannya. Pemancar memancarkan frekuensi carrier yang dimodulasi AM (Amplitude Modulated) dengan dua sinyal sinusoidal yaitu 90 Hz dan 150 Hz. Bila pesawat pada posisi perpanjangan as landasan, akan menerima sinyal modulasi 90 Hz dan 150 Hz dengan phase terhadap carrier sehingga (DDM = 0). Signal yang diberikan oleh Localizer yaitu CSB signal (carrier and sideband) dan SBO signal (sideband only). Sesuai standar peralatan Localizer memiliki jarak pancar sebesar 25 NM
+    </p>
+    <p>
+        Prinsip Kerja Localizer :
+    </p>
+    
+    <ul>
+        <li>CSB (Carrier and Side Band)</li>
+        <ul>
+            <li>
+                Sinyal CSB adalah RF frekuensi carrier yang dimodulasi dengan dua frekuensi audio, 90 Hz dan 150 Hz dan menghasilkan suatu sinyal modulasi amplitudo yang terdiri dari : RF Carrier (FC), Upper Sideband, RF plus 90 Hz dan RF plus 150 Hz, Lower Sideband, RF minus 90 Hz dan RF minus 150 Hz
+            </li>
+            <li>
+                Besarnya modulasi AM audio frekuensi (90 Hz atau 150 Hz) pada frekuensi carrier adalah 20 %, total modulasi kedua audio tersebut adalah 40%
+            </li>
+        </ul>
+        <li>
+            SBO (Side Band Only)
+        </li>
+        <ul>
+            <li>
+                Sinyal SBO adalah frekuensi sideband saja dan frekuensi carriernya dilemahkan (dihilangkan). Karena ada dua audio modulasi frekuensi (90 Hz dan 150 Hz), hasil frekuensi sideband adalah :
+            </li>
+                <ul>
+                    <li>Frekuensi RF Carrier plus dan minus 90 Hz</li>
+                    <li>Frekuensi RF Carrier plus dan minus 90 Hz</li>
+                </ul>
+            <li>
+                Supaya menghasilkan radiasi ILS seperti yang diminta perlu merubah hubungan phase dari SBO tersebut.
+            </li>
+            <ul><li>Menggeser phase 180 º antara sideband 90 Hz dan sideband 150 Hz</li> <li>Selanjutnya menggeser phase 180º sinyal SBO pada separuh sistem jajaran antena.</li> <li>Sebagian dari jajaran antena akan memancarkan kombinasi sinyal CSB dan SBO dimana sideband 90 Hz akan saling menambahkan (sama phasenya), sedangkan sideband 150 Hz akan saling menghilangkan (berbeda phase 180º).</li> <li>Sebagian dari jajaran antena yang sebaliknya akan memancarkan kombinasi sinyal CSB dan SBO dimana sideband 150 Hz akan saling menambahkan (sama phasenya), sedangkan sideband 90 Hz akan saling menghilangkan (berbeda phase 180º)</li> <li>Sinyal CSB dipancararkan dari sepasang antena bagian tengah dari jajaran antena localizer dan menghasilkan DDM = 0 pada landasan</li></ul>
+        </ul>
+    </ul>
+
+    <h4 id="Standar-Penempatan-Localizer" class="shadow-lg rounded font-weight-bolder">Standar Teknis Penempatan Localizer</h4>
+    <div id="PenempatanLLZ" data-ride="carousel" class="carousel slide"><div class="carousel-inner"><div class="carousel-item active"><img src="https://www.sdf-aviation.com/img/nav-llz-penempatan.jpg" alt="..." class="d-block w-100"></div></div> <a href="#PenempatanLLZ" role="button" data-slide="prev" class="carousel-control-prev"><span aria-hidden="true" class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a> <a href="#PenempatanLLZ" role="button" data-slide="next" class="carousel-control-next"><span aria-hidden="true" class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a></div>
+    <ol><li>Penempatan Antena dan Shelter
+        <ol type="a"><li>Lokasi penempatan antena Localizer berada diujung akhir landasan pacu, yang susunannya membentuk garis tegak lurus terhadap perpanjangan garis tengah landasan pacu dengan jarak yang ideal 300 meter dari threshold landasan pacu terdekat</li> <li>Lokasi penempatan shelter peralatan Localizer berada disamping (kiri ataupun kanan) antena dengan jarak 75 meter dari pusat antena</li> <li>Namun bilamana terkendala karena terbatasnya lahan yang tersedia, jarak lokasi antena Localizer terhadap threshold dapat diperpendek sampai dengan 150m, dan penempatan shelter peralatan peralatan Localizer sama butir b diatas.</li></ol></li> <li>Kondisi Permukaan Lahan dan Lingkungan
+        <p>Kondisi lahan pada daerah kritis dan sensitif ditentukan dengan memenuhi beberapa hal :
+            <ol type="a"><li>Bebas halangan/obstacle bagi pancaran langsung sinyal Localizer</li> <li>Perataan lahan terutama di daerah kritis idealnya memiliki kerataan sama dengan atau lebih dari 3 cm</li> <li>Ketinggian permukaan lahan di antena dan shelter peralatan Localizer sama dengan permukaan threshold</li> <li>Meniadakan, menjauhkan dan mengendalikan setiap obyek/bangunan yang dapat memantulkan/memancarkan kembali gelombang radio, baik dalam bentuk gundukan tanah, pagar dari metal ataupun benda tumbuh/semak belukar yang dapat mempengaruhi sinyal panduan Localizer</li> <li>Tidak terdapat jaringan listrik tegangan tinggi yang melintas kawasan pendekatan dan pendaratan</li> <li>Kondisi lingkungan diluar daerah kritis dan sensitif yang tidak memenuhi persyaratan dapat diperbolehkan, selama tidak mempengaruhi kualitas sinyal Localizer yang dapat diketahui dari hasil Flight Commissioning</li> <li>Mempertimbangkan kemungkinan adanya rencana pengembangan bandar udara</li></ol></p></li></ol>
+
+
+
+
+
+
+
+</div><!-- /.blog-details__content -->
