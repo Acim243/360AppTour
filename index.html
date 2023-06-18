@@ -532,6 +532,12 @@ var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  o
 infospotsilverfinearttwentycherrytreesavenuefieldaustria2.addEventListener('click', function(){
 ChangePanorama('ANTENNA_MIDDLE_MARKER');
 });
+var infospotsilverfinearttwentycherrytreesavenuefieldaustria3 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotsilverfinearttwentycherrytreesavenuefieldaustria3.position.set( 4965.61, 347.82, 395.45 );
+					silverfinearttwentycherrytreesavenuefieldaustria.add(infospotsilverfinearttwentycherrytreesavenuefieldaustria3);
+infospotsilverfinearttwentycherrytreesavenuefieldaustria3.addEventListener('click', function(){
+location.replace("blog.html")
+});
 viewer.add( silverfinearttwentycherrytreesavenuefieldaustria );
 var IMG_3410 = new PANOLENS.ImagePanorama( "panoramas/IMG_3410.jpg" );
 			IMG_3410.addEventListener('progress', function(e){
